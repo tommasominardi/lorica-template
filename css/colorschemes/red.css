@@ -1,0 +1,83 @@
+#topstripe {
+	border-top: 5px solid #920000;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	color:#920000;
+}
+
+input[type=submit],input[type=button], a.button, .button a {
+	background-color:#920000;
+}
+
+.pageSocials a {
+	background-color:#920000;
+}
+
+#header .siteroll li {
+	color:#920000;
+}
+
+#header .siteroll li a {
+	color:#920000;
+}
+
+#header .siteroll li:hover {
+	box-shadow:0 3px 0 0 #920000;
+}
+
+#header .navBar li {
+	color:#920000;
+}
+
+#header .navBar li a {
+	color:#920000;
+}
+
+#header .navBar li:hover,
+#header .navBar li.sel,
+#header .navBar li.ancestor {
+	box-shadow:0 3px 0 0 #920000;
+}
+
+.navBar ul li ul {
+	border-top:3px solid #920000;
+}
+
+#topstripe {
+	border-top:5px solid #920000;
+}
+	
+#topstripe .socials a {
+	color:#920000;
+}
+#topstripe .socials a:hover {
+	color:#ca0000;
+}
+
+.featuredImage {
+	border-top:5px solid #920000;
+}
+
+footer {
+	background-color:#920000;
+}
+
+#instagram_badge a .text:after {
+	border-top:10px solid #920000;
+}
+
+#cookieLawAlert {
+    background-color:#920000;
+}
+
+a {
+    color:#920000;
+}
+a:hover {
+	color:#ca0000;
+}
+
+footer a {
+	color:#f6e9bc;
+}

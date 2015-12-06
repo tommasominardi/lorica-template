@@ -1,0 +1,1 @@
+<div class="thumb <?= kGetImageClass(); ?>"><a href="<?= kGetImageURL(); ?>" rel="lightbuzz" title="<?= kGetThumbAlt(); ?>"><img src="<?= kGetThumbURL(); ?>" width="<?= kGetThumbWidth(); ?>px" height="<?= kGetThumbHeight(); ?>px" alt="<?= kGetThumbAlt(); ?>" /></a></div>

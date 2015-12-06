@@ -1,0 +1,87 @@
+#topstripe {
+	border-top: 5px solid #bbda7f;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	color:#90ba3f;
+}
+
+input[type=submit],input[type=button], a.button, .button a {
+	background-color:#bbda7f;
+}
+
+.pageSocials a {
+	background-color:#bbda7f;
+}
+
+#header .siteroll li {
+	color:#90ba3f;
+}
+
+#header .siteroll li a {
+	color:#90ba3f;
+}
+
+#header .siteroll li:hover {
+	box-shadow:0 3px 0 0 #bbda7f;
+}
+
+#header .navBar li {
+	color:#90ba3f;
+}
+
+#header .navBar li a {
+	color:#90ba3f;
+}
+
+#header .navBar li:hover,
+#header .navBar li.sel,
+#header .navBar li.ancestor {
+	box-shadow:0 3px 0 0 #bbda7f;
+}
+
+.navBar ul li ul {
+	border-top:3px solid #bbda7f;
+	background-color:#f0f0f0;
+}
+#topstripe {
+	border-top:5px solid #bbda7f;
+}
+	
+#topstripe .socials a {
+	color:#bbda7f;
+}
+#topstripe .socials a:hover {
+	color:#90ba3f;
+}
+
+.featuredImage {
+	border-top:5px solid #bbda7f;
+}
+
+footer {
+	background-color:#bbda7f;
+}
+
+#instagram_badge a .text:after {
+	border-top:10px solid #bbda7f;
+}
+
+#cookieLawAlert {
+    background-color:#bbda7f;
+}
+
+a {
+    color:#90ba3f;
+}
+a:hover {
+	color:#bbda7f;
+}
+
+footer a {
+	color:#fff;
+	text-decoration:underline;
+}
+footer a:hover {
+	color:#fff;
+}

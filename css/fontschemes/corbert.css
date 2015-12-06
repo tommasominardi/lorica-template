@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'LoricaTitle';
+    src: url('../fonts/corbert_regular_regular-wf.eot');
+    src: url('../fonts/corbert_regular_regular-wf.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/corbert_regular_regular-wf.woff') format('woff'),
+         url('../fonts/corbert_regular_regular-wf.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+	}
+@font-face {
+    font-family: 'LoricaTitle';
+    src: url('../fonts/corbert_bold-wf.eot');
+    src: url('../fonts/corbert_bold-wf.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/corbert_bold-wf.woff') format('woff'),
+         url('../fonts/corbert_bold-wf.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+	}
+@font-face {
+    font-family: 'LoricaTitle';
+    src: url('../fonts/corbert_italic_italic-wf.eot');
+    src: url('../fonts/corbert_italic_italic-wf.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/corbert_italic_italic-wf.woff') format('woff'),
+         url('../fonts/corbert_italic_italic-wf.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+	}
+
+@font-face {
+    font-family: 'LoricaText';
+    src: url('../fonts/corbert_regular_regular-wf.eot');
+    src: url('../fonts/corbert_regular_regular-wf.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/corbert_regular_regular-wf.woff') format('woff'),
+         url('../fonts/corbert_regular_regular-wf.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+	}
+@font-face {
+    font-family: 'LoricaText';
+    src: url('../fonts/corbert_bold-wf.eot');
+    src: url('../fonts/corbert_bold-wf.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/corbert_bold-wf.woff') format('woff'),
+         url('../fonts/corbert_bold-wf.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+	}
+@font-face {
+    font-family: 'LoricaText';
+    src: url('../fonts/corbert_italic_italic-wf.eot');
+    src: url('../fonts/corbert_italic_italic-wf.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/corbert_italic_italic-wf.woff') format('woff'),
+         url('../fonts/corbert_italic_italic-wf.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+	}

@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'LoricaTitle';
+    src: url('../fonts/varelaround-regular-wf.eot');
+    src: url('../fonts/varelaround-regular-wf.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/varelaround-regular-wf.woff') format('woff'),
+         url('../fonts/varelaround-regular-wf.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+	}
+
+@font-face {
+    font-family: 'LoricaText';
+    src: url('../fonts/varelaround-regular-wf.eot');
+    src: url('../fonts/varelaround-regular-wf.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/varelaround-regular-wf.woff') format('woff'),
+         url('../fonts/varelaround-regular-wf.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+	}
