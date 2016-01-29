@@ -2,10 +2,13 @@
 	<?php
 
 	$GLOBALS['loricaColumnWide'] = intval($GLOBALS['loricaColumnWide']);
+	$GLOBALS['loricaOptions'] = intval($GLOBALS['loricaOptions']);
+	if(empty($GLOBALS['loricaOptions'])) $GLOBALS['loricaOptions'] = kGetVar('news',1);
+	if(empty($GLOBALS['loricaOptions'])) $GLOBALS['loricaOptions'] = 5;
 
 	if(!isset($_GET['p'])) $_GET['p'] = 1;
 	
-	foreach(kGetNewsList( array("page"=>$_GET['p']) ) as $i=>$news)
+	foreach(kGetNewsList( array("page"=>$_GET['p'], "limit"=>$GLOBALS['loricaOptions']) ) as $i=>$news)
 	{
 		kSetNewsByDir($news['dir']);
 

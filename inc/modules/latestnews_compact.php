@@ -3,7 +3,8 @@
 
 	$GLOBALS['loricaColumnWide'] = intval($GLOBALS['loricaColumnWide']);
 	$GLOBALS['loricaOptions'] = intval($GLOBALS['loricaOptions']);
-	if(!empty($GLOBALS['loricaOptions'])) $GLOBALS['loricaOptions'] = 5;
+	if(empty($GLOBALS['loricaOptions'])) $GLOBALS['loricaOptions'] = kGetVar('news',1);
+	if(empty($GLOBALS['loricaOptions'])) $GLOBALS['loricaOptions'] = 5;
 
 	foreach(kGetNewsList( array("limit"=>$GLOBALS['loricaOptions']) ) as $i=>$news)
 	{

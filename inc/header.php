@@ -28,6 +28,7 @@ foreach(kGetLanguages() as $t)
 <link rel="stylesheet" media="screen" href="<?= kGetTemplateDir(); ?>css/screen.css">
 <link rel="stylesheet" media="only screen and (max-width: 480px)" href="<?= kGetTemplateDir(); ?>css/phone.css">
 <link rel="stylesheet" media="screen" href="<?= kGetTemplateDir(); ?>css/colorschemes/<?= $color_scheme; ?>.css">
+<?php if(file_exists(kGetTemplatePath().'css/custom.css')) ?><link rel="stylesheet" media="screen" href="<?= kGetTemplateDir(); ?>css/custom.css"><?php } ?>
 
 <script type="text/javascript" src="<?= kGetTemplateDir(); ?>js/kalamun.js" charset="UTF-8"></script>
 <script type="text/javascript" src="<?= kGetTemplateDir(); ?>js/lightbuzz.js" charset="UTF-8" defer></script>
