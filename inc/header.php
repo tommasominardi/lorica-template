@@ -28,7 +28,7 @@ foreach(kGetLanguages() as $t)
 <link rel="stylesheet" media="screen" href="<?= kGetTemplateDir(); ?>css/screen.css">
 <link rel="stylesheet" media="only screen and (max-width: 480px)" href="<?= kGetTemplateDir(); ?>css/phone.css">
 <link rel="stylesheet" media="screen" href="<?= kGetTemplateDir(); ?>css/colorschemes/<?= $color_scheme; ?>.css">
-<?php if(file_exists(kGetTemplatePath().'css/custom.css')) ?><link rel="stylesheet" media="screen" href="<?= kGetTemplateDir(); ?>css/custom.css"><?php } ?>
+<?php if(file_exists(kGetTemplatePath().'css/custom.css')) { ?><link rel="stylesheet" media="screen" href="<?= kGetTemplateDir(); ?>css/custom.css"><?php } ?>
 
 <script type="text/javascript" src="<?= kGetTemplateDir(); ?>js/kalamun.js" charset="UTF-8"></script>
 <script type="text/javascript" src="<?= kGetTemplateDir(); ?>js/lightbuzz.js" charset="UTF-8" defer></script>
@@ -42,18 +42,20 @@ foreach(kGetLanguages() as $t)
 
 <div id="topstripe">
 	<div class="row">
-		<div class="grid w2 column">
+		<div class="grid w8 column">
 			<a href="<?= kGetBaseDir(); ?>" class="logo"><?php
 				if($display_logo == true) { ?><img src="<?= kGetTemplateDir(); ?>img/logo_small.png" alt="<?= kGetSiteName(); ?>"><? }
 				else { echo kGetSiteName(); }
 			?></a>
 		</div>
-		<div class="grid w10 column">
+		<div class="grid w4 column">
 			<div class="socials">
 				<?php if(!empty($socials['facebook'])) { ?><a href="<?= $socials['facebook']; ?>" target="_blank"></a><?php } ?>
 				<?php if(!empty($socials['instagram'])) { ?><a href="<?= $socials['instagram']; ?>" target="_blank"></a><?php } ?>
 				<?php if(!empty($socials['pinterest'])) { ?><a href="<?= $socials['pinterest']; ?>" target="_blank"></a><?php } ?>
 				<?php if(!empty($socials['twitter'])) { ?><a href="<?= $socials['twitter']; ?>" target="_blank"></a><?php } ?>
+				<?php if(!empty($socials['plus'])) { ?><a href="<?= $socials['plus']; ?>" target="_blank"></a><?php } ?>
+				<?php if(!empty($socials['medium'])) { ?><a href="<?= $socials['medium']; ?>" target="_blank"></a><?php } ?>
 				<a href="<?= kGetFeedDir(); ?>"></a>
 			</div>
 			<div class="languages">

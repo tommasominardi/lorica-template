@@ -35,6 +35,7 @@ $socials['twitter'] = "http://www.twitter.com";
 $socials['instagram'] = "http://www.instagram.com";
 $socials['pinterest'] = "http://www.pinterest.com";
 $socials['plus'] = "http://plus.google.com";
+$socials['medium'] = "http://www.medium.com";
 
 
 

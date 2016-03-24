@@ -99,6 +99,7 @@ video {
     font-family: 'icons';
     src: url('fonts/icons.eot');
     src: url('fonts/icons.eot?#iefix') format('embedded-opentype'),
+		 url('fonts/icons.woff2') format('woff2'),
          url('fonts/icons.woff') format('woff'),
          url('fonts/icons.ttf') format('truetype');
     font-weight: normal;
@@ -644,6 +645,9 @@ p.alignright {
 #header .navBar ul ul li {
 	padding:0;
 	margin:0;
+	display: block;
+	box-shadow: none !important;
+	padding: 2px 0;
 }
 #header .navBar ul ul li,
 #header .navBar ul ul li:hover {
@@ -688,6 +692,9 @@ p.alignright {
 	transition:opacity .3s ease-in-out;
 	padding:2px 10px;
 	display:block;
+}
+#topstripe .logo img {
+	max-height: 50px;
 }
 #topstripe.onScroll .logo {
 	opacity:1;
