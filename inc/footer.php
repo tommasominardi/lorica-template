@@ -1,3 +1,4 @@
+</section>
 <div class="clearBoth"></div>
 
 <footer>

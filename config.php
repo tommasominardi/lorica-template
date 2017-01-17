@@ -2,7 +2,7 @@
 /********************************************
 CONFIGURAZIONE DEL TEMA
 ********************************************/
-global $color_scheme, $font_scheme, $display_logo, $socials, $home_rows, $page_rows, $newsarchive_rows, $news_rows, $footer_rows;
+global $color_scheme, $font_scheme, $display_logo, $socials, $home_rows, $page_rows, $newsarchive_rows, $news_rows, $shoparchive_rows, $shop_rows, $cart_rows, $topbar_row, $header_rows, $footer_rows;
 
 
 /*
@@ -19,14 +19,6 @@ $font_scheme = "varela";
 
 
 /*
-mostra il logo o mostra una scritta
-(il logo si trova dentro img/ ed è in due dimensioni diverse: logo.png e logo_small.png
-*/
-
-$display_logo = false;
-
-
-/*
 social networks: gli indirizzi dei vari social
 */
 $socials = array();
@@ -36,6 +28,79 @@ $socials['instagram'] = "http://www.instagram.com";
 $socials['pinterest'] = "http://www.pinterest.com";
 $socials['plus'] = "http://plus.google.com";
 $socials['medium'] = "http://www.medium.com";
+$socials['rss'] = "true"; // "true" per attivare il tasto dei feed rss, "false" per disattivarlo
+
+
+
+/********************************************
+ISTRUZIONI GENERALI
+********************************************/
+/*
+
+Moduli disponibili:
+
+ "slideshow" -> slideshow della galleria di foto
+ "fullpage" -> tutta la pagina: titolo, sottotitolo, excerpt, testo, photogallery, document gallery...
+ "page" -> titolo, sottotitolo e testo
+ "featuredimage" -> l'immagine di presentazione della pagina home
+ "pagetitle" -> il titolo della pagina home
+ "pagesubtitle" -> il sottotitolo della pagina home
+ "pageexcerpt" -> l'anteprima della pagina home
+ "pagecontent" -> il contenuto della pagina home
+ "photogallery" -> galleria di foto della pagina
+ "documentgallery" -> galleria di documenti della pagina
+ "comments" -> commenti alla pagina
+ 
+ "newsgallery" -> galleria di foto delle ultime news, con rispettivi link
+ "newslist" -> elenco di news con paginazione
+ "latestnews[(int)]" -> le ultime notizie, tra parentesi quadra indicare quante (default = 5)
+ "latestnews_compact[(int)]" -> le ultime notizie in versione compatta
+ 
+ "catalogue[2]" -> catalogo degli articoli in vendita, tra parentesi quadre la larghezza del singolo articolo (default = 3)
+ "minicart" -> il carrello in forma compatta, da usare dentro alle pagine
+ "cart" -> il carrello in forma completa
+ "cartform" -> la pagina del carrello, incluso il form di acquisto
+ "itemprice" -> shop: il prezzo del singolo articolo
+ "addtocart" -> shop: il tasto di aggiunta al carrello
+ 
+ "banner[(string)]" -> i banner nella categoria indicata tra parentesi quadra
+ 
+ "logo" -> mostra il logo, linkato all'home page
+ "empty" -> vuoto :-)
+ "string[(string)]" -> una breve linea di testo, che verrà processata dal dizionario
+ "menu[(string)]" -> menù: se specificato il nome, mostra quel menù, altrimenti il principale
+ "languages" -> link alle lingue, se più di una
+ "sociallinks" -> collegamenti ai social abilitati
+ "socialshare" -> condivisione sui social
+ "newsletter[(int)]" -> modulo di iscrizione alla newsletter (id della lista, default = 1)
+ "footer" -> il testo del footer impostato nel pannello di controllo
+ 
+Prima di ogni opzione può essere scritto un numero da 1 a 12, che indica la larghezza della colonna
+
+*/
+
+
+/********************************************
+HEADER - SI VEDE IN TUTTE LE PAGINE
+********************************************/
+
+/*
+cosa mostrare nella fascia superiore?
+*/
+$topbar_row = "2 logo, 10 minicart";
+
+/*
+cosa mostrare nell'header?
+*/
+$header_rows = array();
+$header_rows[] = "3 empty, 6 logo";
+$header_rows[] = "12 menu[]";
+
+/*
+mostra il logo (se true) o mostra una scritta (se false)
+(il logo si trova dentro img/ ed è in due dimensioni diverse: logo.png e logo_small.png
+*/
+$display_logo = false;
 
 
 
@@ -45,29 +110,6 @@ HOME PAGE
 
 /*
 cosa mostrare in home page?
-
-Le opzioni sono:
- "slideshow" -> slideshow della galleria di foto della pagina home
- "newsgallery" -> galleria di foto delle ultime news linkate
- "photogallery" -> galleria di foto della pagina home
- "documentgallery" -> galleria di foto della pagina home
- "page" -> titolo, sottotitolo e testo della pagina home
- "fullpage" -> tutta la pagina: titolo, sottotitolo, excerpt, testo, photogallery, document gallery...
- "featuredimage" -> l'immagine di presentazione della pagina home
- "pagetitle" -> il titolo della pagina home
- "pagesubtitle" -> il sottotitolo della pagina home
- "pageexcerpt" -> l'anteprima della pagina home
- "pagecontent" -> il contenuto della pagina home
- "newslist" -> elenco di news con paginazione
- "latestnews[(int)]" -> le ultime notizie, tra parentesi quadra indicare quante (default = 5)
- "latestnews_compact[(int)]" -> le ultime notizie in versione compatta
- "banner[(string)]" -> i banner nella categoria indicata tra parentesi quadra
- "socialshare" -> condivisione sui social
- "comments" -> commenti alla pagina
- "newsletter[(int)]" -> modulo di iscrizione alla newsletter (id della lista, default = 1)
- "footer" -> il testo del footer impostato nel pannello di controllo
- 
-Prima di ogni opzione può essere scritto un numero da 1 a 12, che indica la larghezza della colonna
 */
 
 $home_rows = array();
@@ -102,12 +144,39 @@ $newsarchive_rows = array();
 $newsarchive_rows[] = "12 newslist";
 
 
+/********************************************
+PAGINE DEL NEGOZIO
+********************************************/
+
 /*
-cosa mostrare in ogni colonna della pagina della singola news?
+mostra nell'header il link al carrello: true o false
+*/
+$header_display_cart = true;
+
+
+/*
+cosa mostrare in ogni colonna della pagina dello shop?
 */
 
-$news_rows = array();
-$news_rows[] = "8 fullpage, 4 socialshare banner[sidebar] latestnews_compact[3]";
+$shoparchive_rows = array();
+$shoparchive_rows[] = "12 catalogue[4]";
+
+
+/*
+cosa mostrare in ogni colonna della pagina del singolo articolo?
+*/
+
+$shop_rows = array();
+$shop_rows[] = "8 fullpage, 4 socialshare minicart banner[sidebar]";
+
+
+/*
+cosa mostrare nella pagina del carrello?
+*/
+
+$cart_rows = array();
+$cart_rows[] = "2 empty, 8 cart";
+$cart_rows[] = "2 empty, 8 cartform";
 
 
 
@@ -129,9 +198,11 @@ $footer_rows[] = "footer";
 FUNZIONI PER IL TEMPLATE... NON TOCCARE QUI SOTTO!
 ********************************************/
 
-function loricaIncludeModules($mods)
+function loricaIncludeModules($mods, $context="")
 {
-	global $loricaOptions, $loricaColumnWide;
+	global $loricaOptions, $loricaColumnWide, $loricaContext;
+	
+	$loricaContext = $context;
 	
 	$mods = explode(",", $mods);
 	if(empty($mods)) return false;

@@ -1,5 +1,14 @@
 <?php
 include(kGetTemplatePath()."config.php");
+
+/* LOGIN */
+if(isset($_POST['login_username'])&&isset($_POST['login_password']))
+{
+	kMemberLogIn($_POST['login_username'],$_POST['login_password']);
+	if(isset($_SESSION['orderData'])) unset($_SESSION['orderData']);
+} elseif(isset($_GET['logout'])) {
+	kMemberLogOut();
+}
 ?>
 <!DOCTYPE html>
 <html lang="<?= kGetLanguage(); ?>">
@@ -26,7 +35,6 @@ foreach(kGetLanguages() as $t)
 } ?>
 <link rel="stylesheet" media="screen" href="<?= kGetTemplateDir(); ?>css/fontschemes/<?= $font_scheme; ?>.css">
 <link rel="stylesheet" media="screen" href="<?= kGetTemplateDir(); ?>css/screen.css">
-<link rel="stylesheet" media="only screen and (max-width: 480px)" href="<?= kGetTemplateDir(); ?>css/phone.css">
 <link rel="stylesheet" media="screen" href="<?= kGetTemplateDir(); ?>css/colorschemes/<?= $color_scheme; ?>.css">
 <?php if(file_exists(kGetTemplatePath().'css/custom.css')) { ?><link rel="stylesheet" media="screen" href="<?= kGetTemplateDir(); ?>css/custom.css"><?php } ?>
 
@@ -40,50 +48,17 @@ foreach(kGetLanguages() as $t)
 
 <body>
 
-<div id="topstripe">
-	<div class="row">
-		<div class="grid w8 column">
-			<a href="<?= kGetBaseDir(); ?>" class="logo"><?php
-				if($display_logo == true) { ?><img src="<?= kGetTemplateDir(); ?>img/logo_small.png" alt="<?= kGetSiteName(); ?>"><? }
-				else { echo kGetSiteName(); }
-			?></a>
-		</div>
-		<div class="grid w4 column">
-			<div class="socials">
-				<?php if(!empty($socials['facebook'])) { ?><a href="<?= $socials['facebook']; ?>" target="_blank"></a><?php } ?>
-				<?php if(!empty($socials['instagram'])) { ?><a href="<?= $socials['instagram']; ?>" target="_blank"></a><?php } ?>
-				<?php if(!empty($socials['pinterest'])) { ?><a href="<?= $socials['pinterest']; ?>" target="_blank"></a><?php } ?>
-				<?php if(!empty($socials['twitter'])) { ?><a href="<?= $socials['twitter']; ?>" target="_blank"></a><?php } ?>
-				<?php if(!empty($socials['plus'])) { ?><a href="<?= $socials['plus']; ?>" target="_blank"></a><?php } ?>
-				<?php if(!empty($socials['medium'])) { ?><a href="<?= $socials['medium']; ?>" target="_blank"></a><?php } ?>
-				<a href="<?= kGetFeedDir(); ?>"></a>
-			</div>
-			<div class="languages">
-				<? kPrintLanguages(); ?>
-			</div>
-			<div class="clearBoth"></div>
-		</div>
-	</div>
-</div>
+<section id="topstripe">
+	<?php loricaIncludeModules($topbar_row, 'topbar'); ?>
+</section>
 
-<div id="header">
-	<div class="row">
-		<div class="grid w12">
-			<div id="logo">
-				<h2><a href="<?= kGetBaseDir(); ?>"><?php
-				if($display_logo == true) { ?><img src="<?= kGetTemplateDir(); ?>img/logo.png" alt="<?= kGetSiteName(); ?>"><? }
-				else { echo kGetSiteName(); }
-				?></a></h2>
-			</div>
-		</div>
-	</div>
-	<div class="clearBoth"></div>
-	<div class="row">
-		<div class="grid w12">
-			<div class="navBar"><a href="#" class="openMenu"><?= kTranslate('Menu'); ?></a><? kPrintMenu(array('ref'=>0,'recursive'=>true,'img'=>false,'collection'=>'')); ?></div>
-		</div>
-	<div class="clearBoth"></div>
-	</div>
-</div>
+<section id="header">
+	<?php
+	foreach($GLOBALS['header_rows'] as $row)
+	{
+		loricaIncludeModules($row, 'header');
+	}
+	?>
+</section>
 
-<div id="contents">
+<section id="contents">

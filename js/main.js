@@ -281,6 +281,212 @@ function onLoadHandler()
 		var form = c[i].getElementsByTagName('FORM')[0];
 		kAddEvent(form, "submit", onNewsletterSubscribe);
 	}
+	
+	if(document.getElementById('idsitem'))
+	{
+		shop = new kShopItem();
+		shop.init();
+	}
+	shopCart = new kShopCart();
+	shopCart.refreshPayments();
 }
 kAddEvent(window, "load", onLoadHandler);
 
+
+function kShopItem()
+{
+	var priceElm=null;
+	var itemID=null;
+	var addToCartElm=null;
+	var handler=TEMPLATEDIR+"ajax/shopHandler.php";
+	
+	var init=function() {
+		itemID=document.getElementById('idsitem').value||null;
+		priceElm=document.getElementById('price')||null;
+
+		addToCartElm=document.getElementById('addToCart')||null;
+		if(addToCartElm) kAddEvent(addToCartElm,'click',addToCart);
+
+		for(var i=0;document.getElementById('variation'+i);i++) {
+			kAddEvent(document.getElementById('variation'+i),'change',recalculatePrice);
+			}
+		recalculatePrice();
+		}
+	this.init=init;
+
+	var recalculatePrice=function()
+	{
+		if(priceElm)
+		{
+			priceElm.innerHTML='...';
+		
+			//collect variations
+			var variations=",";
+			for(var i=0;document.getElementById('variation'+i);i++) {
+				var v=document.getElementById('variation'+i);
+				if(v.value!="") variations+=v.value+",";
+				}
+
+			//request price
+			var aj=new kAjax();
+			aj.onSuccess(printPrice);
+			aj.onFail(printPriceError);
+			aj.send("get",handler,"getItemPrice="+itemID+"&variations="+variations);
+		}
+	}
+	this.recalculatePrice=recalculatePrice;
+
+	var printPrice=function(html,xml) {
+		if(priceElm) priceElm.innerHTML=html;
+		}
+	this.printPrice=printPrice;
+	var printPriceError=function() {
+		if(priceElm) priceElm.innerHTML='Error while loading data';
+		}
+	this.printPriceError=printPriceError;
+
+	var addToCart=function () {
+		if(addToCartElm)
+		{
+			//collect variations
+			var variations=",";
+			for(var i=0;document.getElementById('variation'+i);i++)
+			{
+				var v=document.getElementById('variation'+i);
+				if(v.value!="") variations+=v.value+",";
+			}
+
+			var aj=new kAjax();
+			aj.onSuccess(function()
+			{
+				printAddedToCart();
+				shopCart.updateWidget();
+			});
+			aj.onFail();
+			aj.send("post",handler,"addToCart="+itemID+"&variations="+variations);
+			}
+		}
+	this.addToCart=addToCart;
+	
+	var printAddedToCart=function()
+	{
+		if(addToCartElm) addToCartElm.parentNode.className+=' added';
+		setTimeout(hideAddedToCart,2000);
+	}
+	this.printAddedToCart=printAddedToCart;
+	
+	var hideAddedToCart=function()
+	{
+		if(addToCartElm) addToCartElm.parentNode.className=addToCartElm.parentNode.className.replace('added','');
+	}
+	this.hideAddedToCart=hideAddedToCart;
+}
+
+function kShopCart() {
+	var handler=TEMPLATEDIR+"ajax/shopHandler.php";
+
+	var init=function() {
+		refreshPayments();
+		}
+	this.init=init;
+	
+	var addToCart=function(uid) {
+		var aj=new kAjax();
+		aj.onSuccess(function(html,xml) {
+			updateWidget(html,xml);
+			});
+		aj.onFail();
+		aj.send("post",handler,"increaseCartItem="+uid);
+		}
+	this.addToCart=addToCart;
+
+	var removeFromCart=function(uid) {
+		var aj=new kAjax();
+		aj.onSuccess(function(html,xml) {
+			updateWidget(html,xml);
+			});
+		aj.onFail();
+		aj.send("post",handler,"decreaseCartItem="+uid);
+		}
+	this.removeFromCart=removeFromCart;
+
+	var updateWidget = function(html,xml)
+	{
+		var containers = document.getElementsByClassName('cartWidget');
+		if(containers.length>0)
+		{
+			var aj = new kAjax();
+			aj.onSuccess(printWidget);
+			aj.onFail();
+			aj.send("post",handler,"getCartSummary=true");
+		}
+	}
+	this.updateWidget=updateWidget;
+	
+	var printWidget=function(html,xml)
+	{
+		var containers = document.getElementsByClassName('cartWidget');
+		for(var i=0; containers[i]; i++)
+		{
+			html = html.replace(/<section .*?>/,"");
+			html = html.replace("</section>","");
+			containers[i].innerHTML = html;
+		}
+	}
+
+	var updateItemQuantity=function(html,xml) {
+		var items = html.split("\n");
+		for(var i in items) {
+			var attr=items[i].split("|");
+			if(attr[0]!='tot') {
+				var tr=document.getElementById('item'+attr[3]);
+				if(tr) {
+					if(parseInt(attr[1])==0)
+					{
+						tr.parentNode.removeChild(tr,true);
+					} else {
+						if(tr.querySelector('.qtynum')) tr.querySelector('.qtynum').innerHTML=attr[1];
+						if(tr.querySelector('.pricenum')) tr.querySelector('.pricenum').innerHTML=attr[2];
+					}
+				}
+			} else {
+				document.querySelector('.totalnum').innerHTML=attr[2];
+			}
+		}
+	}
+	this.updateItemQuantity=updateItemQuantity;
+	
+	var switchVisibility=function(elm) {
+		if(elm.offsetHeight<20) {
+			elm.style.height=elm.scrollHeight+'px';
+			elm.getElementsByTagName('INPUT')[0].value='yes';
+			}
+		else {
+			elm.style.height=0;
+			elm.getElementsByTagName('INPUT')[0].value='no';
+			}
+		}
+	this.switchVisibility=switchVisibility;
+	
+	var refreshPayments=function()
+	{
+		var cnt=document.getElementById('paymentMethods');
+		if(!cnt) return false;
+		var country="";
+		if(document.getElementById('delivery_country')) country=document.getElementById('delivery_country').value;
+		if(country=="" && document.getElementById('customer_country')) country=document.getElementById('customer_country').value;
+		
+		if(document.getElementById('delivery_country')) kAddEvent(document.getElementById('delivery_country'),'change',refreshPayments);
+		if(document.getElementById('customer_country')) kAddEvent(document.getElementById('customer_country'),'change',refreshPayments);
+		
+		var ajax=new kAjax();
+		ajax.onSuccess(function(html,xml)
+			{
+				document.getElementById('paymentMethods').innerHTML=html;
+			});
+		ajax.onFail(function(error) { });
+		ajax.send("get",handler,"&getPaymentsByCountryCode="+escape(country));
+	}
+	this.refreshPayments=refreshPayments;
+
+}
