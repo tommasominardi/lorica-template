@@ -794,9 +794,13 @@ h1:first-child,h2:first-child,h3:first-child,h4:first-child,h5:first-child,h6:fi
 }
 
 /* shop */
-.cartWidget {
+.cartWidget .cart-container {
 	background-color:#F0F0F0;
 	padding:30px;
+}
+#topstripe .cartWidget .cart-container {
+	background-color:transparent;
+	padding:0;
 }
 .cartWidget table {
 	width:100%;

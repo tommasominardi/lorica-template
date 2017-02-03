@@ -133,7 +133,35 @@ if(kIsNews())
 		
 		<div class="contentsBox">
 			<?= kGetShopItemText(); ?>
+			
+			<div class="variationsBox"><?
+			/* VARIATIONS */
+			/* the onchange event is activated and managed by kShopItem javascript class */
+			$variationslist = kGetShopItemVariations();
+			
+			if(!empty($variationslist))
+			{
+				$i=0;
+				foreach($variationslist as $collection=>$variations)
+				{
+					?>
+					<label for="variation<?= $i; ?>"><?= $collection; ?></label>
+					<select id="variation<?= $i; ?>" name="variation[<?= $i; ?>]" class="variation">
+						<?
+						foreach($variations as $option) { ?>
+							<option value="<?= $option['idsvar']; ?>"><?= $option['name']; ?> <?= $option['price']!=""?'('.$option['price'].')':''; ?></option>
+							<? }
+						?>
+						</select>
+					<br />
+					<?
+					$i++;
+				}
+			}
+			?>
+			</div>
 		</div>
+		
 		<div class="row">
 			<div class="grid w4 column">
 				<div class="priceBox">

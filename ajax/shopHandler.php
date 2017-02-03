@@ -22,11 +22,19 @@ elseif(isset($_POST['getTotalAmount']))
 elseif(isset($_POST['addToCart']))
 {
 	kSetShopItemById($_POST['addToCart']);
-	$qty=isset($_POST['qty'])?intval($_POST['qty']):1;
-	$variations=isset($_POST['variations'])&&is_array($_POST['variations'])?$_POST['variations']:array();
-	$customvariations=isset($_POST['customvariations'])&&is_array($_POST['customvariations'])?$_POST['customvariations']:array();
+	$qty = isset($_POST['qty'])?intval($_POST['qty']):1;
+	
+	if(isset($_POST['variations']))
+	{
+		if( is_array($_POST['variations']) )
+			$variations =  $_POST['variations'];
+		else 
+			$variations = explode( ",", trim($_POST['variations'], ",") );
+	} else $variations = array();
+	
+	$customvariations = isset($_POST['customvariations']) && is_array($_POST['customvariations']) ? $_POST['customvariations'] : array();
 
-	if(kGetShopItemId()>0) kShopAddToCart(kGetShopItemId(),$qty,$variations,$customvariations);
+	if(kGetShopItemId()>0) kShopAddToCart(kGetShopItemId(), $qty, $variations, $customvariations);
 
 	// print the entire list of items into the cart
 	$cart=kGetShopCart();

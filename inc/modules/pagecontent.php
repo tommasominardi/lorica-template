@@ -9,6 +9,12 @@ if(kHaveNews())
 		<?= kGetNewsText(); ?>&nbsp;
 	</div>
 	<?php
+} elseif(kHaveShopItem()) {
+	?>
+	<div class="grid w<?= $GLOBALS['loricaColumnWide']; ?>">
+		<?= kGetShopItemText(); ?>&nbsp;
+	</div>
+	<?php
 } else {
 	?>
 	<div class="grid w<?= $GLOBALS['loricaColumnWide']; ?>">

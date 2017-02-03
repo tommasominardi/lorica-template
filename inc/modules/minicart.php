@@ -7,6 +7,7 @@ if(!isset($GLOBALS['loricaContext'])) $GLOBALS['loricaContext']="";
 if($cart['itemsnumber']>0)
 {
 	?>
+	<div class="cart-container">
 		<h2><?= kTranslate('Il tuo carrello'); ?></h2>
 		<div class="cartSummary">
 		<table class="cartList">
@@ -80,7 +81,7 @@ if($cart['itemsnumber']>0)
 			</p>
 		</div>
 		</div>
-	
+	</div>
 	<?php
 }
 ?>
