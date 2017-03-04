@@ -449,7 +449,6 @@ h1:first-child,h2:first-child,h3:first-child,h4:first-child,h5:first-child,h6:fi
 	position:relative;
 	margin:0;
 	padding:50px 0 20px 0;
-	z-index:100;
 }
 #header .logo h2 {
 	margin:30px 0;
@@ -636,7 +635,7 @@ h1:first-child,h2:first-child,h3:first-child,h4:first-child,h5:first-child,h6:fi
 	border-top:5px solid #052b40;
 	font-size:.75em;
 	text-align:left;
-	z-index:1000;
+	z-index:1500;
 	background:transparent;
 	transition:background .3s ease-in-out;
 }
@@ -948,10 +947,13 @@ h1:first-child,h2:first-child,h3:first-child,h4:first-child,h5:first-child,h6:fi
 	padding:20px;
 	color:#eee;
 }
-.newsletter h2 {
+.newsletter > h2 {
 	color:#fff;
 	margin:6px 10px 0 0;
 	text-shadow:none;
+}
+.newsletter > p {
+	margin:0;
 }
 .newsletter .submit {
 	text-align:right;
@@ -993,6 +995,31 @@ h1:first-child,h2:first-child,h3:first-child,h4:first-child,h5:first-child,h6:fi
 }
 .newsletter .show {
 	display:block !important;
+}
+
+#topstripe .newsletter.subscribe {
+	text-align:center;
+	padding:3px 0;
+	margin-top:-10px;
+}
+#topstripe .newsletter.subscribe > h2,
+#topstripe .newsletter.subscribe form,
+#topstripe .newsletter.subscribe input {
+	display:inline-block;
+}
+#topstripe .newsletter.subscribe input {
+	width:auto;
+	min-width:300px;
+}
+#topstripe .newsletter.subscribe input[type=submit] {
+	min-width:0;
+}
+#topstripe .newsletter.subscribe br,
+#topstripe .newsletter.subscribe > p {
+	display:none;
+}
+#topstripe .newsletter.subscribe .submit {
+	display:inline-block;
 }
 
 
@@ -1703,7 +1730,7 @@ and (orientation : portrait)
 and (max-width : 667px) {
 	body {
 		font-size:9pt;
-		padding-top:0;
+		padding-top:50px;
 		}
 
 	.row {
@@ -1775,7 +1802,7 @@ and (max-width : 667px) {
 	}
 
 	#header {
-		z-index:1300;
+		z-index:1500;
 		}
 
 	#header .grid {
@@ -1785,8 +1812,8 @@ and (max-width : 667px) {
 		display:inline-block;
 		width:50%;
 		}
-	#header #logo img {
-		width:150px;
+	#header .logo img {
+		max-width:150px;
 		height:auto;
 		padding-top:0px;
 		}
@@ -1795,24 +1822,17 @@ and (max-width : 667px) {
 		padding:0;
 		}
 
-	#header .navBar {
-		position:fixed;
-		top:5px;
-		right:0px;
-		width:100%;
-		height:auto;
-		padding:10px;
-		margin:0;
-		text-align:right;
-		}
 	#header .navBar .openMenu {
-		position:relative;
+		position:fixed;
 		display:inline-block;
 		color:transparent;
 		width:30px;
 		height:30px;
 		background-color:transparent;
 		border-top: 7px solid #637078;
+		top:10px;
+		right:10px;
+		z-index:2000;
 	}
 	#header .navBar .openMenu::before {
 		content: "";
@@ -1834,56 +1854,70 @@ and (max-width : 667px) {
 	}
 
 	#header .navBar ul {
-		position:absolute;
-		display:none;
-		top:90%;
-		right:10px;
-		width:50%;
-		background-color:#fff;
-		padding:0;
-		box-shadow:0 5px 8px -5px rgba(0,0,0,.5);
-		z-index:1200;
-		}
-	#header .navBar:hover>ul {
-		display:block;
-		}
-	#header .navBar ul a {
-		display:block;
-		text-align:left;
-		padding:5px;
-		}
-	#header .navBar ul li a.sel,
-	#header .navBar ul li a.ancestor,
-	#header .navBar ul li a:hover {
-		border:0;
-		background-color:#eee;
-		}
-	#header .navBar li:hover, #header .navBar li.sel, #header .navBar li.ancestor {
-		box-shadow:none;
-		}
-	#header .navBar ul li {
-		display:block;
-		padding:0;
-		margin:0;
-		border:0;
-		}
-	#header .navBar ul li:hover {
-		border:0;
-		}
-	#header .navBar ul li a {
-		display:block;
-		padding:10px 15px;
-		border:0;
-		}
-	#header .navBar ul li a:hover {
-		background-color:#000;
-		color:#fff;
-		border:0;
-		}
-	#header .navBar ul li ul {
+		position:fixed;
 		left:100%;
 		top:0;
-		}
+		width:100%;
+		background-color:#222;
+		z-index:90;
+		transition: left .3s ease-in-out;
+		height: 100%;
+		overflow: auto;
+		padding-top:50px;
+	}
+	#header .navBar:hover ul {
+		left:0;
+	}
+	#header .navBar li a {
+		text-decoration:none;
+		color:#fff !important;
+	}
+	#header .navBar li.sel {
+		background-color:#888;
+		border:0;
+		box-shadow:none;
+	}
+	#header .navBar li.sel a {
+		background-color:#888;
+		border:0;
+		box-shadow:none;
+		color:#fff;
+	}
+	#header .navBar ul li {
+		position:relative;
+		display:block;
+		padding:10px;
+	}
+	#header .navBar ul li ul {
+		position:relative;
+		top: 0;
+		left: 0;
+		margin: 0;
+		background-color: transparent !important;
+		display: block;
+		padding: 5px 20px;
+		box-shadow: none;
+		font-size: 1.2rem;
+		border:0;
+	}
+	#header .navBar ul li ul li {
+		background-color:transparent;
+		font-size:.7rem;
+		line-height:1.1em;
+	}
+	#header .navBar ul li ul li a {
+		white-space:normal;
+		padding:5px;
+		color:#fff !important;
+	}
+	#header .navBar ul ul li ul {
+		position:relative;
+		left: 0;
+		display: block;
+		background-color: transparent;
+		padding: 0 0 10px 20px;
+		box-shadow: none;
+	}
 
 	.titleBox, .contentBox, .contentsBox {
 		padding-left:20px;

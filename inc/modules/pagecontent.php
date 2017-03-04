@@ -10,6 +10,7 @@ if(kHaveNews())
 	</div>
 	<?php
 } elseif(kHaveShopItem()) {
+	kSetShopItemByDir();
 	?>
 	<div class="grid w<?= $GLOBALS['loricaColumnWide']; ?>">
 		<?= kGetShopItemText(); ?>&nbsp;

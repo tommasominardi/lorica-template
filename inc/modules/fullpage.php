@@ -101,7 +101,11 @@ if(kIsNews())
 		<script>var shop = null;</script>
 	</div>
 	<?php
+
 	
+/************
+* SHOP ITEM
+************/
 } elseif(kIsShop()) {
 	kSetShopItemByDir();
 	?>
@@ -133,6 +137,18 @@ if(kIsNews())
 		
 		<div class="contentsBox">
 			<?= kGetShopItemText(); ?>
+
+			<?php
+			$customfields = (kGetShopItemCustomFields());
+			
+			if(!empty($customfields))
+			{
+				foreach($customfields as $customfield)
+				{
+					echo '<div class="customfield"><span class="customfield name">'. $customfield['name'] .'</span>: <span class="customfield value">'.$customfield['value'].'</span></div>';
+				}
+			}
+			?>
 			
 			<div class="variationsBox"><?
 			/* VARIATIONS */

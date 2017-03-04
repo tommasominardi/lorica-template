@@ -33,20 +33,67 @@ foreach(kGetLanguages() as $t)
 		<link rel="alternate" hreflang="<?= strtolower($t['ll']); ?>" href="<?= $t['url']; ?>" title="This document in <?= $t['lingua']; ?>">
 	<? }
 } ?>
-<link rel="stylesheet" media="screen" href="<?= kGetTemplateDir(); ?>css/fontschemes/<?= $font_scheme; ?>.css">
-<link rel="stylesheet" media="screen" href="<?= kGetTemplateDir(); ?>css/screen.css">
-<link rel="stylesheet" media="screen" href="<?= kGetTemplateDir(); ?>css/colorschemes/<?= $color_scheme; ?>.css">
-<?php if(file_exists(kGetTemplatePath().'css/custom.css')) { ?><link rel="stylesheet" media="screen" href="<?= kGetTemplateDir(); ?>css/custom.css"><?php } ?>
 
-<script type="text/javascript" src="<?= kGetTemplateDir(); ?>js/kalamun.js" charset="UTF-8"></script>
-<script type="text/javascript" src="<?= kGetTemplateDir(); ?>js/lightbuzz.js" charset="UTF-8" defer></script>
-<script type="text/javascript" src="<?= kGetTemplateDir(); ?>js/main.js" charset="UTF-8" defer></script>
-<script type="text/javascript">var TEMPLATEDIR='<?= kGetTemplateDir(); ?>';</script>
+<script type="text/javascript">
+	var TEMPLATEDIR='<?= kGetTemplateDir(); ?>';
+
+	kAddEvent=function(obj,event,func,model)
+	{
+		if(!model) model=true;
+		if(obj.addEventListener) return obj.addEventListener(event,func,model);
+		if(obj.attachEvent) return obj.attachEvent('on'+event,func);
+		return false;
+	}
+	
+	function embedJSonDomReady() {
+		var elm = document.createElement("script");
+		elm.src = TEMPLATEDIR+"js/main.min.js";
+		elm.setAttribute("charset","UTF-8");
+		document.body.appendChild(elm);
+	}
+	
+	function removePreloader()
+	{
+		var preloader = document.getElementById('preloader');
+		preloader.style.opacity = 0;
+		setTimeout(function () {
+			preloader.parentNode.removeChild(preloader,true);
+		},
+		1000);
+	}
+	
+	kAddEvent(document,'DOMContentLoaded',embedJSonDomReady);
+	kAddEvent(window,'load',removePreloader);
+	
+	var loadDeferredStyles = function() {
+		var addStylesNode = document.getElementById("deferred-styles");
+		var replacement = document.createElement("div");
+		replacement.innerHTML = addStylesNode.textContent;
+		document.body.appendChild(replacement)
+		addStylesNode.parentElement.removeChild(addStylesNode);
+	};
+	
+	var raf = requestAnimationFrame || mozRequestAnimationFrame || webkitRequestAnimationFrame || msRequestAnimationFrame;
+	
+	if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+	else window.addEventListener('load', loadDeferredStyles);
+
+</script>
+
+<noscript id="deferred-styles">
+	<link rel="stylesheet" media="screen" href="<?= kGetTemplateDir(); ?>css/fontschemes/<?= $font_scheme; ?>.css">
+	<link rel="stylesheet" media="screen" href="<?= kGetTemplateDir(); ?>css/screen.css">
+	<link rel="stylesheet" media="screen" href="<?= kGetTemplateDir(); ?>css/colorschemes/<?= $color_scheme; ?>.css">
+	<?php if(file_exists(kGetTemplatePath().'css/custom.css')) { ?><link rel="stylesheet" media="screen" href="<?= kGetTemplateDir(); ?>css/custom.css"><?php } ?>
+</noscript>
+
+<style>#preloader{position:fixed;top:0;left:0;width:100%;height:100%;z-index:10000;opacity:1;background:#fff;transition:opacity .3s ease-out;}</style>
 
 <?= kGetExternalStatistics(); ?>
 </head>
 
 <body>
+<div id="preloader"></div>
 
 <section id="topstripe">
 	<?php loricaIncludeModules($topbar_row, 'topbar'); ?>

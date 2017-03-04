@@ -1,11 +1,11 @@
-<div class="newsletter subscribe">
+<div class="newsletter subscribe mailchimp">
 	<h2><?= kTranslate('Newsletter'); ?></h2>
 	<p><?= kTranslate('Iscriviti alla nostra newsletter'); ?></p>
-	<form action="<?= kGetTemplateDir(); ?>ajax/newsletter.php">
+	<form action="<?= kGetTemplateDir(); ?>ajax/mailchimp.php">
 		<input type="text" name="nl_leaveEmpty">
 		<input type="text" name="nl_name" placeholder="<?= kTranslate('Scrivi il tuo nome'); ?>"><br>
 		<input type="text" name="nl_email" placeholder="<?= kTranslate('Scrivi la tua e-mail'); ?>"><br>
-		<input type="hidden" name="nl_code" value="<?= rand(1000,9999).$GLOBALS['loricaOptions']; ?>">
+		<input type="hidden" name="nl_code" value="<?= $GLOBALS['loricaOptions']; ?>">
 		<div class="submit"><input type="submit" name="nl_submit" value="<?= kTranslate('Iscriviti'); ?>"></div>
 	
 		<div class="nl_loading"><?= kTranslate('...aspetta un attimo, ti sto iscrivendo...'); ?></div>

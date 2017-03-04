@@ -30,6 +30,10 @@ $socials['plus'] = "http://plus.google.com";
 $socials['medium'] = "http://www.medium.com";
 $socials['rss'] = "true"; // "true" per attivare il tasto dei feed rss, "false" per disattivarlo
 
+/*
+mailchimp
+*/
+$mailchimp_api_key = ''; // se usi mailchimp, qui devi mettere l'api key. La crei su Account > Extras > API keys > Create a key
 
 
 /********************************************
@@ -62,6 +66,7 @@ Moduli disponibili:
  "cartform" -> la pagina del carrello, incluso il form di acquisto
  "itemprice" -> shop: il prezzo del singolo articolo
  "addtocart" -> shop: il tasto di aggiunta al carrello
+ "customfield[nome del campo]" -> shop: campo personalizzato. Tra parentesi quadre il nome del campo da mettere
  
  "banner[(string)]" -> i banner nella categoria indicata tra parentesi quadra
  
@@ -73,6 +78,7 @@ Moduli disponibili:
  "sociallinks" -> collegamenti ai social abilitati
  "socialshare" -> condivisione sui social
  "newsletter[(int)]" -> modulo di iscrizione alla newsletter (id della lista, default = 1)
+ "mailchimp[list id]" -> modulo di iscrizione a mailchimp (l'id della lista a cui iscrivere, si trova su Settings > List name and defaults)
  "footer" -> il testo del footer impostato nel pannello di controllo
  
 Prima di ogni opzione può essere scritto un numero da 1 a 12, che indica la larghezza della colonna
@@ -87,7 +93,7 @@ HEADER - SI VEDE IN TUTTE LE PAGINE
 /*
 cosa mostrare nella fascia superiore?
 */
-$topbar_row = "2 logo, 10 minicart";
+$topbar_row = "3 logo minicart";
 
 /*
 cosa mostrare nell'header?
@@ -115,7 +121,7 @@ cosa mostrare in home page?
 $home_rows = array();
 $home_rows[] = "slideshow"; // prima riga
 $home_rows[] = "2 pageexcerpt, 6 pagecontent, 4 latestnews[3]"; // seconda riga
-$home_rows[] = "newsletter[1], banner[home]"; // terza riga
+$home_rows[] = "12 banner[home]"; // terza riga
 
 
 
