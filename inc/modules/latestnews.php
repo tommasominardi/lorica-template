@@ -23,10 +23,10 @@
 					</div>
 				<?php } ?>
 
-				<div class="grid w1 column">
+				<div class="grid w4 column">
 					<div class="date"><?= kGetNewsDate("<strong>%d</strong><small>%B</small>"); ?></div>
 				</div>
-				<div class="grid w<?= $GLOBALS['loricaColumnWide']-1; ?> column">
+				<div class="grid w4 column">
 					<div class="preview">
 						<h2><?= kGetNewsTitle(); ?></h2>
 						<? if(kGetNewsSubtitle()!="") { ?><h3><?= kGetNewsSubtitle(); ?></h3><? } ?>
