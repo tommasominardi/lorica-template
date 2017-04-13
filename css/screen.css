@@ -280,6 +280,9 @@ table td {
 .grid object,.grid element,.grid iframe { min-height:400px; }
 .grid object,.grid element { min-height:300px; }
 .grid>h1:first-child,.grid>h2:first-child,.grid>h3:first-child,.grid>h4:first-child,.grid>h5:first-child,.grid>h6:first-child { margin-top:0; }
+
+/* old_grid */
+/*
 .grid.w1 { width:calc(8.3333% - 30px); }
 .grid.w2 { width:calc(16.6666% - 30px); }
 .grid.w3 { width:calc(25% - 30px); }
@@ -304,6 +307,94 @@ table td {
 .grid.w10.nomargin { width:83.3334%; }
 .grid.w11.nomargin { width:91.6667%; }
 .grid.w12.nomargin { width:100%; }
+*/
+/* fine old_grid */
+
+/* new_grid */
+.grid {
+	margin:0 15px;
+	position:relative;
+}
+.grid.w1 {
+	width:60px;
+}
+.grid.w2 {
+	width:150px;
+}
+.grid.w3 {
+	width:240px;
+}
+.grid.w4 {
+	width:330px;
+}
+.grid.w5 {
+	width:420px;
+}
+.grid.w6 {
+	width:510px;
+}
+.grid.w7 {
+	width:600px;
+}
+.grid.w8 {
+	width:690px;
+}
+.grid.w9 {
+	width:780px;
+}
+.grid.w10 {
+	width:870px;
+}
+.grid.w11 {
+	width:960px;
+}
+.grid.w12 {
+	width:1050px;
+}
+.grid.w1.nomargin {
+	width:90px;
+}
+.grid.w2.nomargin {
+	width:180px;
+}
+.grid.w3.nomargin {
+	width:270px;
+}
+.grid.w4.nomargin {
+	width:360px;
+}
+.grid.w5.nomargin {
+	width:450px;
+}
+.grid.w6.nomargin {
+	width:540px;
+}
+.grid.w7.nomargin {
+	width:630px;
+}
+.grid.w8.nomargin {
+	width:720px;
+}
+.grid.w9.nomargin {
+	width:810px;
+}
+.grid.w10.nomargin {
+	width:900px;
+}
+.grid.w11.nomargin {
+	width:990px;
+}
+.grid.w12.nomargin {
+	width:1080px;
+}
+.grid.center {
+	margin:0 auto !important;
+}
+.grid.nomargin {
+	margin:0;
+}
+/* fine new_grid */
+
 .grid.padding-15 { padding:15px; }
 .grid.padding-30 { padding:30px; }
 .grid.padding-60 { padding:60px; }
@@ -1521,7 +1612,7 @@ footer .siteroll small {
 /* cookie law */
 #cookieLawAlert {
     position:fixed;
-    top:0;
+    bottom:0;
     left:0;
     right:0;
     padding:15px 30px;
@@ -1733,6 +1824,24 @@ and (max-width : 667px) {
 		padding-top:50px;
 		}
 
+			/* inizio modifica logo mobile */
+	#header .logo img {
+		display: none !important;
+	}
+	section#header a.logo h2 {
+		margin: 0px 0;
+		text-align: center;
+		height: 200px;
+		background-image: url() !important;
+		background-repeat: no-repeat !important;
+		background-attachment: initial !important;
+		background-position: center !important;
+		background-size: contain;
+	}
+	/* fine modifica logo mobile */
+		
+		
+		
 	.row {
 		position:relative;
 		clear:both;
@@ -1954,4 +2063,3 @@ and (min-width : 375px)
 and (max-width : 667px) 
 and (orientation : portrait) {
 }
-
